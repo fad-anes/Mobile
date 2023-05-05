@@ -11,7 +11,7 @@ package com.mycompany.entities;
  */
 public class Commentaire {
     private int idcommentaire,user,offre,jaime,djaime;
-    private String commentaire;
+    private String commentaire,firstName,lastName;
 
     public Commentaire() {
     }
@@ -32,9 +32,31 @@ public class Commentaire {
     public int getIdcommentaire() {
         return idcommentaire;
     }
+    
+    
 
     public void setIdcommentaire(int idcommentaire) {
         this.idcommentaire = idcommentaire;
+    }
+    
+    public String getfirstName() {
+        return firstName;
+    }
+    
+    
+
+    public void setfirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    
+    public String getlastName() {
+        return lastName;
+    }
+    
+    
+
+    public void setlastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getCommentaire() {

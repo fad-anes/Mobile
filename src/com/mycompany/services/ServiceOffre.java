@@ -347,6 +347,63 @@ public class ServiceOffre {
         
         
     }
+  
+  public ArrayList<Commentaire>Affichecommentaire(int id) {
+        ArrayList<Commentaire> result = new ArrayList<>();
+        
+        String url = Statics.BASE_URL+"/Affichecommentaire/"+id;
+        req.setUrl(url);
+        
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                JSONParser jsonp ;
+                jsonp = new JSONParser();
+                
+                try {
+                    Map<String,Object>mapOffres = jsonp.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
+                    
+                    List<Map<String,Object>> listOfMaps =  (List<Map<String,Object>>) mapOffres.get("root");
+                    
+                    for(Map<String, Object> obj : listOfMaps) {
+                        Commentaire Commentaire = new Commentaire();
+                        
+                        //dima id fi codename one float 5outhouha
+                        float id = Float.parseFloat(obj.get("idcommentaire").toString());                       
+                        String commentaire = obj.get("commentaire").toString();                                            
+                        String firstName = obj.get("firstName").toString();
+                        String lastName = obj.get("lastName").toString();
+                        
+                        
+                        
+                        Commentaire.setIdcommentaire((int)id);
+                        Commentaire.setCommentaire(commentaire);                      
+                        Commentaire.setfirstName(firstName);
+                        Commentaire.setlastName(lastName);
+                        ///formater la date
+                        
+                        
+                        //insert data into ArrayList result
+                        result.add(Commentaire);
+                        
+                       
+                
+                    }
+                    
+                }catch(Exception ex) {
+                    
+                    ex.printStackTrace();
+                }
+            
+            }
+        });
+        
+      NetworkManager.getInstance().addToQueueAndWait(req);//execution ta3 request sinon yet3ada chy dima nal9awha
+       
+        return result;
+        
+        
+    }
 
     
        
