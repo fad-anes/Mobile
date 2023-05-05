@@ -28,6 +28,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
+import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 
@@ -48,7 +49,17 @@ public class AjoutOffreForm extends BaseForm {
     Form current;
     public AjoutOffreForm(Resources res ) {
       
-       
+        Toolbar tb = new Toolbar(true);
+        setToolbar(tb);
+        getTitleArea().setUIID("Container");
+        setTitle("Ajouter offres");
+        getContentPane().setScrollVisible(false);
+        tb.getUnselectedStyle().setBgTransparency(255);
+tb.getUnselectedStyle().setBgColor(0x000000);
+tb.getUnselectedStyle().setBorder(Border.createEmpty());
+tb.getSelectedStyle().setBgTransparency(255);
+tb.getSelectedStyle().setBgColor(0x000000);
+tb.getSelectedStyle().setBorder(Border.createEmpty());
         
       
         TextField titre = new TextField("", "Entrer le titre du votre offre!");

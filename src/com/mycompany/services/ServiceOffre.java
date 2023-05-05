@@ -136,6 +136,71 @@ public class ServiceOffre {
     
     
     
+    public ArrayList<Offre>Affichetous() {
+        ArrayList<Offre> result = new ArrayList<>();
+        
+        String url = Statics.BASE_URL+"/Alloffre";
+        req.setUrl(url);
+        
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                JSONParser jsonp ;
+                jsonp = new JSONParser();
+                
+                try {
+                    Map<String,Object>mapOffres = jsonp.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
+                    
+                    List<Map<String,Object>> listOfMaps =  (List<Map<String,Object>>) mapOffres.get("root");
+                    
+                    for(Map<String, Object> obj : listOfMaps) {
+                        Offre Offre = new Offre();
+                        
+                        //dima id fi codename one float 5outhouha
+                        float id = Float.parseFloat(obj.get("idoffre").toString());
+                        
+                        String description = obj.get("description").toString();
+                        
+                        String titre = obj.get("titre").toString();
+                        String firstName = obj.get("firstName").toString();
+                        String lastName = obj.get("lastName").toString();
+                        String srcimage = obj.get("srcimage").toString();
+                        float salaireh = Float.parseFloat(obj.get("salaireh").toString());
+                        
+                        
+                        Offre.setIdoffre((int)id);
+                        Offre.setDescription(description);
+                        Offre.setTitre(titre);
+                        Offre.setSalaireh(salaireh);
+                        Offre.setFirstName(firstName);
+                        Offre.setLastName(lastName);
+                        Offre.setSrcimage(srcimage);
+                        ///formater la date
+                        
+                        
+                        //insert data into ArrayList result
+                        result.add(Offre);
+                        
+                       
+                
+                    }
+                    
+                }catch(Exception ex) {
+                    
+                    ex.printStackTrace();
+                }
+            
+            }
+        });
+        
+      NetworkManager.getInstance().addToQueueAndWait(req);//execution ta3 request sinon yet3ada chy dima nal9awha
+       
+        return result;
+        
+        
+    }
+    
+    
     
     //Delete 
     public boolean deleteOffre(int idoffre ) {
@@ -216,6 +281,72 @@ public class ServiceOffre {
 
     return offre;
 }
+  
+  
+  
+  public ArrayList<Offre>Serch(String serch) {
+        ArrayList<Offre> result = new ArrayList<>();
+        
+        String url = Statics.BASE_URL+"/Serchoffr/"+serch;
+        req.setUrl(url);
+        
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                JSONParser jsonp ;
+                jsonp = new JSONParser();
+                
+                try {
+                    Map<String,Object>mapOffres = jsonp.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
+                    
+                    List<Map<String,Object>> listOfMaps =  (List<Map<String,Object>>) mapOffres.get("root");
+                    
+                    for(Map<String, Object> obj : listOfMaps) {
+                        Offre Offre = new Offre();
+                        
+                        //dima id fi codename one float 5outhouha
+                        float id = Float.parseFloat(obj.get("idoffre").toString());
+                        
+                        String description = obj.get("description").toString();
+                        
+                        String titre = obj.get("titre").toString();
+                        String firstName = obj.get("firstName").toString();
+                        String lastName = obj.get("lastName").toString();
+                        String srcimage = obj.get("srcimage").toString();
+                        float salaireh = Float.parseFloat(obj.get("salaireh").toString());
+                        
+                        
+                        Offre.setIdoffre((int)id);
+                        Offre.setDescription(description);
+                        Offre.setTitre(titre);
+                        Offre.setSalaireh(salaireh);
+                        Offre.setFirstName(firstName);
+                        Offre.setLastName(lastName);
+                        Offre.setSrcimage(srcimage);
+                        ///formater la date
+                        
+                        
+                        //insert data into ArrayList result
+                        result.add(Offre);
+                        
+                       
+                
+                    }
+                    
+                }catch(Exception ex) {
+                    
+                    ex.printStackTrace();
+                }
+            
+            }
+        });
+        
+      NetworkManager.getInstance().addToQueueAndWait(req);//execution ta3 request sinon yet3ada chy dima nal9awha
+       
+        return result;
+        
+        
+    }
 
     
        

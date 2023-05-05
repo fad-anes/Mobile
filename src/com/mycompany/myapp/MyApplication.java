@@ -51,7 +51,7 @@ public class MyApplication {
             current.show();
             return;
         }
-        new ListOffreForm(theme).show();
+        new Listetousoffre(theme).show();
     }
 
     public void stop() {

@@ -34,10 +34,11 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
+import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
-
+import com.codename1.ui.plaf.UIManager;
 import com.mycompany.entities.Offre;
 import com.mycompany.services.ServiceOffre;
 import java.util.ArrayList;
@@ -52,9 +53,20 @@ public class ListOffreForm extends BaseForm{
     public ListOffreForm(Resources res ) {
         
 
+super("Newsfeed", BoxLayout.y());
+        Toolbar tb = new Toolbar(true);
+        setToolbar(tb);
+        getTitleArea().setUIID("Container");
+        setTitle("Mes offres");
+        getContentPane().setScrollVisible(false);
+        tb.getUnselectedStyle().setBgTransparency(255);
+tb.getUnselectedStyle().setBgColor(0x000000);
+tb.getUnselectedStyle().setBorder(Border.createEmpty());
+tb.getSelectedStyle().setBgTransparency(255);
+tb.getSelectedStyle().setBgColor(0x000000);
+tb.getSelectedStyle().setBorder(Border.createEmpty());
 
-
-        
+        createLineSeparator();
       
         //Appel affichage methode
         ArrayList<Offre>list = ServiceOffre.getInstance().affichageOffres();
@@ -77,10 +89,21 @@ public class ListOffreForm extends BaseForm{
         
         
          
+// Définir les styles de boutons
+Style boutonStyle = UIManager.getInstance().getComponentStyle("Button");
+boutonStyle.setBgColor(0x4B0082);
+boutonStyle.setFgColor(0xFFFFFF);
+boutonStyle.setMarginUnit(Style.UNIT_TYPE_DIPS);
+boutonStyle.setMargin(Component.BOTTOM, 3);
+
+// Créer les boutons avec les styles définis
 Button ajoutOffreBtn = new Button("Ajouter");
 ajoutOffreBtn.setUIID("SelectBar");
+ajoutOffreBtn.getAllStyles().merge(boutonStyle);
 
-
+Button retour = new Button("Retour");
+retour.setUIID("SelectBar");
+retour.getAllStyles().merge(boutonStyle);
 
 ajoutOffreBtn.addActionListener((e) -> {
     InfiniteProgress ip = new InfiniteProgress();
@@ -91,10 +114,20 @@ ajoutOffreBtn.addActionListener((e) -> {
     refreshTheme();
 });
 
+retour.addActionListener((e) -> {
+    InfiniteProgress ip = new InfiniteProgress();
+    final Dialog ipDlg = ip.showInifiniteBlocking();
+        
+    Listetousoffre a = new Listetousoffre(res);
+    a.show();
+    refreshTheme();
+});
+
+// Ajouter les boutons avec le GridLayout
 add(LayeredLayout.encloseIn(
-    GridLayout.encloseIn(3, ajoutOffreBtn)
-    
+    GridLayout.encloseIn(3, ajoutOffreBtn, retour)
 ));
+
         
         
         
@@ -165,19 +198,19 @@ add(LayeredLayout.encloseIn(
 
     private void addButton(Image img,Offre com , Resources res) {
         
-        int height = Display.getInstance().convertToPixels(11.5f);
-        int width = Display.getInstance().convertToPixels(14f);
+        // Set up the image button
+    int height = Display.getInstance().convertToPixels(11.5f);
+    int width = Display.getInstance().convertToPixels(14f);
+    Button image = new Button(img.fill(width, height));
+    image.setUIID("Label");
+    Container cnt = BorderLayout.west(image);
         
-        Button image = new Button(img.fill(width, height));
-        image.setUIID("Label");
-        Container cnt = BorderLayout.west(image);
-        
-       
-        Label firstName = new Label("Nom : "+com.getFirstName(),"NewsTopLine2");
-        Label lastName = new Label("Prenom : "+com.getLastName(),"NewsTopLine2");
-        Label Titre = new Label("Titre Offres : "+com.getTitre(),"NewsTopLine2");
-        Label Description = new Label("Description : "+com.getDescription(),"NewsTopLine2");
-        Label prix = new Label("prix : "+com.getSalaireh(),"NewsTopLine2" );
+    // Set up the text labels
+    Label firstName = new Label("Nom: " + com.getFirstName(), "NewsTopLine2");
+    Label lastName = new Label("Prenom: " + com.getLastName(), "NewsTopLine2");
+    Label title = new Label(com.getTitre(), "NewsTopLine2Bold");
+    Label description = new Label(com.getDescription(), "NewsTopLine2");
+    Label salary = new Label(com.getSalaireh() + " DH", "NewsTopLine2Bold" );
         
         createLineSeparator();
  
@@ -238,19 +271,26 @@ add(LayeredLayout.encloseIn(
         ////
         
         
-        cnt.add(BorderLayout.WEST,BoxLayout.encloseY(
-                
-                
-                BoxLayout.encloseX(firstName),
-                BoxLayout.encloseY(lastName),
-                BoxLayout.encloseX(Titre),
-                BoxLayout.encloseX(Description),
-                BoxLayout.encloseX(prix),
-                BoxLayout.encloseX(lModifier,lSupprimer)));
+       Container textCnt = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+    textCnt.getStyle().setBgColor(0xEDEDED); // Set the background color
+    textCnt.getStyle().setBgTransparency(255); // Make it opaque
+    textCnt.getStyle().setBorder(Border.createLineBorder(1, 0xCCCCCC)); // Add a border
         
+    // Add the text labels to the container
+    textCnt.add(firstName);
+    textCnt.add(lastName);
+    
+    textCnt.add(title);
+    
+    textCnt.add(description);
+    
+    textCnt.add(salary);
+      textCnt.add(lSupprimer);  
+      textCnt.add(lModifier); 
+    // Add the container to the main container
+    cnt.add(BorderLayout.CENTER, textCnt);
         
-        
-        add(cnt);
+    add(cnt);
     }
     
    
