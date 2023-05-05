@@ -6,7 +6,9 @@
 package gui;
 
 import com.codename1.components.ImageViewer;
+import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
+import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.Button;
@@ -25,9 +27,12 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.spinner.DateSpinner;
 import com.mycompany.myapp.MyApplication;
 import entites.Role;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -89,12 +94,12 @@ public class Inscription extends Form {
     } else {
         
                 // TODO: Validate user input and submit registration form to server
-          /*ConnectionRequest req = new ConnectionRequest();
+          ConnectionRequest req = new ConnectionRequest();
             String baseUrl = "http://127.0.0.1:8000";
 String endpoint;
                 // Example of how to display a message to the user
                       try {
-            endpoint = "/controle/json/connect/" + firstName + "/" + lastName + "/" + email +"/"+day+"/"+month+"/"+year+"/"+confirmPassword+"/"+selectedRole;
+            endpoint = "/controle/json/inscrit/" + firstName + "/" + lastName + "/" + email +"/"+day+"/"+month+"/"+year+"/"+confirmPassword+"/"+selectedRole;
              String url = baseUrl + endpoint;
              
         req.setUrl(url);
@@ -104,7 +109,23 @@ String endpoint;
             public void actionPerformed(NetworkEvent evt) {
                 Boolean result = req.getResponseCode() == 200; //Code HTTP 200 OK
                  String response = new String(req.getResponseData());
-                 System.out.println(new RoleService().parseRoles(response));
+                 JSONParser j = new JSONParser();
+                 System.out.println(response);
+                try {
+                    Map<String, Object> tasksListJson
+                            = j.parseJSON(new CharArrayReader(response.toCharArray()));
+                    System.out.println(tasksListJson.get("inscription"));
+                    if(tasksListJson.get("inscription").equals("ok"))
+                    {
+                        Dialog.show("Registration", "User registration successful!"  , "OK", null);
+                    }
+                    else {
+                        Dialog.show("Registration", "User registration Failed!"  , "OK", null);
+                    }
+                    
+                } catch (Exception ex) {
+                    System.out.println(response);
+                }
                  
            
             }
@@ -114,9 +135,8 @@ String endpoint;
         
         } catch (Exception ex) {
           
-        }*/
+        }     
                 
-                Dialog.show("Registration", "User registration successful!" + selectedRole , "OK", null);
             }}
         });
         
@@ -132,4 +152,5 @@ String endpoint;
             registerButton
         );
     }
+    
 }
