@@ -76,10 +76,19 @@ String endpoint;
                  ArrayList<Role> roles=new RoleService().parseRoles(response);
                  UserSession usersess= UserSession.getInstance();
                  usersess.setUser(roles.get(0).getIdUser());
+                 usersess.setRole(roles.get(0).getRoleName());
                  
                  if (roles.get(0).getRoleName().equals("Admin"))
                  {
-                     new UsersList().show();
+                     new Admin().show();
+                 }
+                  if (roles.get(0).getRoleName().equals("Freelancer"))
+                 {
+                     new Freelancer().show();
+                 }
+                     if (roles.get(0).getRoleName().equals("Client"))
+                 {
+                     new Client().show();
                  }
                 req.removeResponseListener(this);
                  } }
@@ -114,6 +123,7 @@ cn1.setPreferredW(getWidth());
        /* MainPage mainPage = new MainPage();
         mainPage.show();*/
     }
+    
 }
 
     

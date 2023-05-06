@@ -23,9 +23,11 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.RoundBorder;
+import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.MyApplication;
 import entites.UserSession;
 import java.util.Map;
+
 
 public class ProfilePage extends Form {
     private TextField firstNameField;
@@ -35,10 +37,18 @@ public class ProfilePage extends Form {
     private TextField confirmPasswordField;
     private Button saveButton;
     
-    public ProfilePage() {
+    public ProfilePage(Form previous) {
         super("My Profile");
          UserSession usersess= UserSession.getInstance();
-                
+        
+                 Toolbar toolbar = new Toolbar();
+      setToolBar(toolbar);
+     // set the toolbar for the form
+    toolbar.addCommandToOverflowMenu("Back",null, (ActionListener) (ActionEvent evt) -> {
+            previous.showBack();
+        });
+    
+
         // Initialize UI components
         firstNameField = new TextField(usersess.getUser().getFirstName());
         lastNameField = new TextField(usersess.getUser().getLastName());

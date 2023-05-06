@@ -16,6 +16,7 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.db.Database;
 import gui.Aceuil;
 import gui.ConnectionPage;
+
 import gui.Inscription;
 import gui.ProfilePage;
 
@@ -66,10 +67,9 @@ public class MyApplication {
             current.show();
             return;
         }
+     
         new Aceuil().show();
-       /* Form hi = new Form("Hi World", BoxLayout.y());
-        hi.add(new Label("Hi World"));
-        hi.show();*/
+  
     }
 
     public void stop() {

@@ -65,7 +65,7 @@ public class Inscription extends Form {
     toolbar.addCommandToLeftSideMenu("Connect",null,(e) -> new ConnectionPage().show());
     toolbar.addCommandToLeftSideMenu("Inscription",null,(e) -> new Inscription().show());
     Label title = new Label("TuniTask");
-      Image capturedImage ;
+  
     
  toolbar.setTitleComponent(title);
         // Create fields for user registration form
@@ -77,43 +77,10 @@ public class Inscription extends Form {
         TextField confirmPasswordField = new TextField("", "Confirm Password", 15, TextField.PASSWORD);
         String[] roles = {"Client", "Freelancer"};
         ComboBox<String> roleComboBox = new ComboBox<>(roles);
-        Button takePictureButton = new Button("Take Picture");
+    
        
-takePictureButton.addActionListener(e -> {
-    try {
-       
-Capture.capturePhoto(new ActionListener() {
-    public void actionPerformed(ActionEvent evt) {
-        try {
-           
-            // Get the captured image
-            Image capturedImage = (Image) evt.getSource();
-           ImageViewer cap = new ImageViewer(capturedImage.scaled(400, 400));
-            // Display the captured image on the form
-           // Create the Dialog
-Dialog dialog = new Dialog("Image Dialog");
-
-// Create a Container to hold the image
-Container container = new Container(new BorderLayout());
-container.add(BorderLayout.CENTER, cap);
-// Add the Container to the Dialog and show it
-dialog.setLayout(new BorderLayout());
-dialog.add(BorderLayout.CENTER, container);
-dialog.show();
 
 
-          
-        } catch (Exception e) {
-           
-        }
-    }
-});
-
-    } catch (Exception ex) {
-        // Error capturing image
-        ex.printStackTrace();
-    }
-});
         // Create registration button
         Button registerButton = new Button("Register");
         registerButton.addActionListener(new ActionListener() {
@@ -191,7 +158,7 @@ String endpoint;
             passwordField, 
             confirmPasswordField,
             cap,
-            takePictureButton,
+           
             registerButton
         );
     }

@@ -38,15 +38,19 @@ public class UsersList extends Form{
     public UsersList(){
     setTitle("liste de users");
    setLayout(BoxLayout.y());
-          Toolbar toolbar = new Toolbar();
-      
-    setToolBar(toolbar); // set the toolbar for the form
+         Toolbar toolbar = new Toolbar();
+      setToolBar(toolbar);
+     // set the toolbar for the form
     Command tuniTaskCmd = new Command("TuniTask");
 toolbar.addCommandToLeftSideMenu("TuniTask",null,(e) -> new Aceuil().show());
-
     toolbar.addCommandToLeftSideMenu("Users",null,(e) -> new UsersList().show());
-    toolbar.addCommandToLeftSideMenu("Profile",null,(e) -> new ProfilePage().show());
-   
+    toolbar.addCommandToLeftSideMenu("Ofre",null,(e) -> new ConnectionPage().show());
+    toolbar.addCommandToLeftSideMenu("Proposition",null,(e) -> new Inscription().show());
+        toolbar.addCommandToLeftSideMenu("Quiz",null,(e) -> new Inscription().show());
+        toolbar.addCommandToLeftSideMenu("Events",null,(e) -> new Inscription().show());
+        toolbar.addCommandToLeftSideMenu("Reclamation",null,(e) -> new Inscription().show());
+        toolbar.addCommandToLeftSideMenu("Profile",null,(e) -> new ProfilePage(this).show());
+        toolbar.addCommandToLeftSideMenu("Log out ",null,(e) -> new Aceuil().show());
     Label title = new Label("TuniTask");
 toolbar.setTitleComponent(title);
 
@@ -79,8 +83,7 @@ toolbar.setTitleComponent(title);
    img=URLImage.createToStorage(enc,list.get(i).getSrcimage(),url).scaled(300, 400);
     ImageViewer imgp= new ImageViewer(img);
      Button btn = new Button("block");
-     ArrayList listbtn = new ArrayList<Button>();
-     listbtn.add(btn);
+   
        addAll( addElement(list.get(i)),imgp,btn);
     
     
@@ -92,40 +95,7 @@ toolbar.setTitleComponent(title);
     
         NetworkManager.getInstance().addToQueue(req);
    
-  /*for (int i=0; i<UsersList.list.size();i++)
-                  {
-                         addElement(UsersList.list.get(i));
-                      //System.out.println(list.get(i));
-  
-    
-    
-                  }*/
-      /*Container cn1 = new Container (BoxLayout.x());
-     ImageViewer imgUser=new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(300, 400));
-     Container cn2= new Container (BoxLayout.y());
-     Label email= new Label("test");
-     Label id= new Label(Integer.toString(3));  
-     email.setSize(new Dimension(10,10));
-     id.setSize(new Dimension(10,10));
-     cn2.addAll(id,email);
-     cn1.addAll(imgUser,cn2);
-     add(cn1);*/
-   /*List<Users> us= new ArrayList();
-    UserService s= new UserService();
-    System.out.println(s);
-        try {
-            us= (ArrayList)s.afficherUsers();
-            System.out.println(us);
-                //us.forEach((Users e)  ->add( addElement(e)));
-                for(int i=0;i< us.size();i++)
-                {
-                    System.out.println(us.get(i));
-                    add(addElement(us.get(i)));}
-        } catch (IOException ex) {
-            System.out.println("problem");
-        }
-*/
-    //addAll(addElement(s.afficherUsers()));
+
  
 
     }
