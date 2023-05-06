@@ -42,10 +42,16 @@ public ArrayList<Role> roles;
             String lastName = (String) idUser.get("lastName");
             String createdAt = (String) idUser.get("createdAt");
             String srcImage = (String) idUser.get("srcimage");
+            String password =(String) idUser.get("password");
+            
             //Users u = new Users(userId,email,firstName,lastName,new Date(createdAt),srcImage);
             Users us = new Users();
             us.setId(userId);
             us.setEmail(email);
+            us.setFirstName(firstName);
+            us.setLastName(lastName);
+            us.setSrcimage(srcImage);
+            us.setPassword(password);
             //us.setCreatedAt(new Date(createdAt));
             Role role = new Role(roleId, roleName,us);
             System.out.println("Role" + role );

@@ -5,6 +5,7 @@
  */
 package gui;
 
+import com.codename1.capture.Capture;
 import com.codename1.components.ImageViewer;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
@@ -15,6 +16,7 @@ import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
+import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
@@ -23,8 +25,10 @@ import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.spinner.DateSpinner;
+import com.codename1.ui.util.ImageIO;
 import com.mycompany.myapp.MyApplication;
 import entites.Role;
 
@@ -50,7 +54,7 @@ public class Inscription extends Form {
         Toolbar toolbar = new Toolbar();
         Image img = MyApplication.theme.getImage("logo.png");
          ImageViewer imglogo = new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(500, 500));
-    
+    ImageViewer cap = new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(100, 100));
 
     setToolBar(toolbar); // set the toolbar for the form
     Command tuniTaskCmd = new Command("TuniTask");
@@ -61,7 +65,7 @@ public class Inscription extends Form {
     toolbar.addCommandToLeftSideMenu("Connect",null,(e) -> new ConnectionPage().show());
     toolbar.addCommandToLeftSideMenu("Inscription",null,(e) -> new Inscription().show());
     Label title = new Label("TuniTask");
-     
+      Image capturedImage ;
     
  toolbar.setTitleComponent(title);
         // Create fields for user registration form
@@ -73,6 +77,43 @@ public class Inscription extends Form {
         TextField confirmPasswordField = new TextField("", "Confirm Password", 15, TextField.PASSWORD);
         String[] roles = {"Client", "Freelancer"};
         ComboBox<String> roleComboBox = new ComboBox<>(roles);
+        Button takePictureButton = new Button("Take Picture");
+       
+takePictureButton.addActionListener(e -> {
+    try {
+       
+Capture.capturePhoto(new ActionListener() {
+    public void actionPerformed(ActionEvent evt) {
+        try {
+           
+            // Get the captured image
+            Image capturedImage = (Image) evt.getSource();
+           ImageViewer cap = new ImageViewer(capturedImage.scaled(400, 400));
+            // Display the captured image on the form
+           // Create the Dialog
+Dialog dialog = new Dialog("Image Dialog");
+
+// Create a Container to hold the image
+Container container = new Container(new BorderLayout());
+container.add(BorderLayout.CENTER, cap);
+// Add the Container to the Dialog and show it
+dialog.setLayout(new BorderLayout());
+dialog.add(BorderLayout.CENTER, container);
+dialog.show();
+
+
+          
+        } catch (Exception e) {
+           
+        }
+    }
+});
+
+    } catch (Exception ex) {
+        // Error capturing image
+        ex.printStackTrace();
+    }
+});
         // Create registration button
         Button registerButton = new Button("Register");
         registerButton.addActionListener(new ActionListener() {
@@ -148,7 +189,9 @@ String endpoint;
             dateOfBirthField,
             roleComboBox,
             passwordField, 
-            confirmPasswordField, 
+            confirmPasswordField,
+            cap,
+            takePictureButton,
             registerButton
         );
     }

@@ -45,6 +45,7 @@ public class UsersList extends Form{
 toolbar.addCommandToLeftSideMenu("TuniTask",null,(e) -> new Aceuil().show());
 
     toolbar.addCommandToLeftSideMenu("Users",null,(e) -> new UsersList().show());
+    toolbar.addCommandToLeftSideMenu("Profile",null,(e) -> new ProfilePage().show());
    
     Label title = new Label("TuniTask");
 toolbar.setTitleComponent(title);
