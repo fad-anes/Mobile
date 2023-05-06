@@ -8,6 +8,9 @@
     <class>Inscription.java</class>
     <class>gui.Inscription</class>
     <class>gui.ProfilePage</class>
+    <class>gui.Client</class>
+    <class>gui.Freelancer</class>
+    <class>gui.Admin</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3000/web?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
