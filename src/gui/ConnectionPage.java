@@ -15,6 +15,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.mycompany.myapp.MyApplication;
 import entites.Role;
+import entites.UserSession;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -67,15 +68,21 @@ String endpoint;
             public void actionPerformed(NetworkEvent evt) {
                 Boolean result = req.getResponseCode() == 200; //Code HTTP 200 OK
                  String response = new String(req.getResponseData());
+                 System.out.println(response);
+                 if(response.equals("{\"connect\":\"error\"}"))
+                 { Dialog.show("Connection", "You have to make an account!"  , "OK", null);}
+                 else{
                  System.out.println(new RoleService().parseRoles(response));
-                 
                  ArrayList<Role> roles=new RoleService().parseRoles(response);
+                 UserSession usersess= UserSession.getInstance();
+                 usersess.setUser(roles.get(0).getIdUser());
+                 
                  if (roles.get(0).getRoleName().equals("Admin"))
                  {
                      new UsersList().show();
                  }
                 req.removeResponseListener(this);
-            }
+                 } }
         });
         NetworkManager.getInstance().addToQueue(req);
       
@@ -91,7 +98,7 @@ String endpoint;
         
         // Add components to the form
            Image img = MyApplication.theme.getImage("logo.png");
-           ImageViewer imglogo = new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(400,400));
+           ImageViewer imglogo = new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(700,700));
             Container cn1 = new Container(new FlowLayout(CENTER,CENTER));
                       cn1.setUIID("Container");
 cn1.setPreferredH(getHeight() - getToolbar().getHeight() - 1000);

@@ -7,6 +7,7 @@
     <class>services.RoleService</class>
     <class>Inscription.java</class>
     <class>gui.Inscription</class>
+    <class>gui.ProfilePage</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3000/web?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
