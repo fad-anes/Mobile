@@ -68,7 +68,7 @@ public class UserService {
                    String lastname =obj.get("lastName").toString();
                  System.out.println("createdAt" + obj.get("createdAt").toString());
                 u.setId((int) id);
-                System.out.println(img);
+               
                 u.setSrcimage(img);
                 u.setEmail(email);
                 u.setFirstName(firstname);
