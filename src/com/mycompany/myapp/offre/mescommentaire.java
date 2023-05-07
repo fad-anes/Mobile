@@ -50,6 +50,7 @@ import com.codename1.ui.TextField;
 import com.mycompany.entities.Commentaire;
 import com.mycompany.entities.Offre;
 import com.mycompany.services.ServiceOffre;
+import entites.UserSession;
 import java.util.ArrayList;
 /**
  *
@@ -76,11 +77,11 @@ public mescommentaire(Resources res,int ido) {
         
         
 
-
+            UserSession usersess= UserSession.getInstance();
         
       
         //Appel affichage methode
-        ArrayList<Commentaire>list = ServiceOffre.getInstance().Affichemescommentaire(55);
+        ArrayList<Commentaire>list = ServiceOffre.getInstance().Affichemescommentaire(usersess.getUser().getId());
         
         for(Commentaire com : list ) {
              String urlImage ="activation-background.jpg";

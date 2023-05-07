@@ -41,6 +41,7 @@ import com.codename1.ui.util.Resources;
 import com.codename1.ui.plaf.UIManager;
 import com.mycompany.entities.Offre;
 import com.mycompany.services.ServiceOffre;
+import entites.UserSession;
 import java.util.ArrayList;
 
 /**
@@ -67,9 +68,9 @@ tb.getSelectedStyle().setBgColor(0x000000);
 tb.getSelectedStyle().setBorder(Border.createEmpty());
 
         createLineSeparator();
-      
+       UserSession usersess= UserSession.getInstance();
         //Appel affichage methode
-        ArrayList<Offre>list = ServiceOffre.getInstance().affichageOffres(55);
+        ArrayList<Offre>list = ServiceOffre.getInstance().affichageOffres(usersess.getUser().getId());
         
         for(Offre com : list ) {
              String urlImage ="logo.png";

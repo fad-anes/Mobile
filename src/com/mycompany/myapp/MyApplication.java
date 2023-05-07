@@ -14,6 +14,8 @@ import java.io.IOException;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.io.NetworkEvent;
 import com.codename1.db.Database;
+import com.mycompany.myapp.offre.Listetousoffre;
+import com.mycompany.myapp.offre.offrecommentaire;
 import gui.Aceuil;
 import gui.ConnectionPage;
 
@@ -62,8 +64,9 @@ public class MyApplication {
             return;
         }
      
+       // new Listetousoffre(theme).show();
         new Aceuil().show();
-  
+  //new offrecommentaire(theme).show();
     }
 
     public void stop() {

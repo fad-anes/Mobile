@@ -11,6 +11,8 @@ import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.layouts.BoxLayout;
+import static com.mycompany.myapp.MyApplication.theme;
+import com.mycompany.myapp.offre.offrecommentaire;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +36,7 @@ public  class Client extends Form {
     Command tuniTaskCmd = new Command("TuniTask");
 toolbar.addCommandToLeftSideMenu("TuniTask",null,(e) -> new Aceuil().show());
 
-    toolbar.addCommandToLeftSideMenu("Ofre",null,(e) -> new ConnectionPage().show());
+    toolbar.addCommandToLeftSideMenu("Offre",null,(e) -> new offrecommentaire(theme).show());
     toolbar.addCommandToLeftSideMenu("Demmande",null,(e) -> new Inscription().show());
         toolbar.addCommandToLeftSideMenu("Reclamation",null,(e) -> new Inscription().show());
     Label title = new Label("TuniTask");

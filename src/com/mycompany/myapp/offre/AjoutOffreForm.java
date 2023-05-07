@@ -34,6 +34,7 @@ import com.codename1.ui.util.Resources;
 
 import com.mycompany.entities.Offre;
 import com.mycompany.services.ServiceOffre;
+import entites.UserSession;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -110,9 +111,9 @@ tb.getSelectedStyle().setBorder(Border.createEmpty());
                     
                     System.out.println("data  Offre == "+c.toString());
                     
-                    
+                     UserSession usersess= UserSession.getInstance();
                      
-                    ServiceOffre.getInstance().ajoutOffre(c,55);
+                    ServiceOffre.getInstance().ajoutOffre(c,usersess.getUser().getId());
                     
                     
                     iDialog.dispose(); 

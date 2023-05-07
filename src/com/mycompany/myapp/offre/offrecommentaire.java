@@ -46,10 +46,13 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.TextField;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 
 
 import com.mycompany.entities.Offre;
 import com.mycompany.services.ServiceOffre;
+import gui.Client;
 import java.util.ArrayList;
 /**
  *
@@ -71,7 +74,10 @@ public offrecommentaire(Resources res ) {
         tb.getSelectedStyle().setBgTransparency(255);
         tb.getSelectedStyle().setBgColor(0x000000);
         tb.getSelectedStyle().setBorder(Border.createEmpty());
-       
+        tb.addCommandToOverflowMenu("Back",null, (ActionListener) (ActionEvent evt) -> {
+           new Client().show();
+        });
+    
         
         
 

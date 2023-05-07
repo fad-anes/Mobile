@@ -9,6 +9,8 @@ import com.codename1.ui.Command;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
+import static com.mycompany.myapp.MyApplication.theme;
+import com.mycompany.myapp.offre.Listetousoffre;
 
 /**
  *
@@ -27,7 +29,7 @@ public class Freelancer extends Form {
     Command tuniTaskCmd = new Command("TuniTask");
 toolbar.addCommandToLeftSideMenu("TuniTask",null,(e) -> new Aceuil().show());
 
-    toolbar.addCommandToLeftSideMenu("Ofre",null,(e) -> new ConnectionPage().show());
+    toolbar.addCommandToLeftSideMenu("Offre",null,(e) ->  new Listetousoffre(theme).show());
     toolbar.addCommandToLeftSideMenu("Proposition",null,(e) -> new Inscription().show());
         toolbar.addCommandToLeftSideMenu("Quiz",null,(e) -> new Inscription().show());
         toolbar.addCommandToLeftSideMenu("Events",null,(e) -> new Inscription().show());

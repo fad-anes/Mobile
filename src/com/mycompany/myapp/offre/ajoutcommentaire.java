@@ -33,6 +33,7 @@ import com.codename1.ui.util.Resources;
 import com.mycompany.entities.Commentaire;
 import com.mycompany.entities.Offre;
 import com.mycompany.services.ServiceOffre;
+import entites.UserSession;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -99,9 +100,9 @@ tb.getSelectedStyle().setBorder(Border.createEmpty());
                     
                     System.out.println("data  commentaire == "+c.toString());
                     
-                    
+                    UserSession usersess= UserSession.getInstance();
                      
-                    ServiceOffre.getInstance().ajoutcommentaire(c,ido,55);
+                    ServiceOffre.getInstance().ajoutcommentaire(c,ido,usersess.getUser().getId());
                     
                     
                     iDialog.dispose(); 
