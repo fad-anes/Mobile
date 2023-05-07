@@ -66,7 +66,7 @@ toolbar.setTitleComponent(title);
         cn.addAll(roleComboBox,filter);
         add(cn);
       filter.addActionListener(evt -> {
-          //Dialog.show("Connection", "You have to make an account!"  , "OK", null);
+          
           removeComponent(main);
             main = new Container(BoxLayout.y());
       
@@ -101,8 +101,8 @@ toolbar.setTitleComponent(title);
 
        ConnectionRequest req = new ConnectionRequest();
         String url = "http://127.0.0.1:8000/controle/json/roles";
-        System.out.println(url);
-        //ConnectionRequest.setCertificateValidation(false);
+      
+       
 
         req.setUrl(url);
         req.setPost(false);
@@ -113,23 +113,22 @@ toolbar.setTitleComponent(title);
                      String response = new String(req.getResponseData());
                 req.removeResponseListener(this);
                 RoleService rs = new RoleService();
-                System.out.println(rs.parseRoles1(response));
+                
                  UsersList.list =rs.parseRoles1(response);
       
 
                for (int i=0; i<UsersList.list.size();i++)
                   {
-                         //addElement(UsersList.list.get(i));
-                      System.out.println("ok"+list.get(i).getIdUser().getId());
+                     
                             String url ="http://127.0.0.1/img/"+ list.get(i).getIdUser().getSrcimage();
-        System.out.println(url);
+       
       Image img = MyApplication.theme.getImage("logo.png");
     EncodedImage enc = EncodedImage.createFromImage(img,false);
    img=URLImage.createToStorage(enc,list.get(i).getIdUser().getSrcimage(),url).scaled(300, 400);
     ImageViewer imgp= new ImageViewer(img);
-     Button btn = new Button("block");
+ 
    
-       main.addAll( addElement(list.get(i)),imgp,btn);
+       main.addAll( addElement(list.get(i)),imgp);
     
     
                   }
@@ -149,14 +148,14 @@ toolbar.setTitleComponent(title);
     
    
      Container cn1 = new Container (BoxLayout.x());
-     //ImageViewer imgUser=new ImageViewer(MyApplication.theme.getImage("logo.png").scaled(300, 400));
+
      Container cn2= new Container (BoxLayout.y());
      Label email= new Label(u.getIdUser().getEmail());
        Label name= new Label(u.getIdUser().getLastName()+"\t"+" "+ "\t"+u.getIdUser().getFirstName());
-       // System.out.println(Integer.toString(u.getId()));
+      
      Label id= new Label(Integer.toString(u.getIdUser().getId()));  
      Label role= new Label(u.getRoleName()); 
-    // email.setSize(new Dimension(10,10));
+  
      id.setSize(new Dimension(10,10));
      cn2.addAll(id,email,name,role);
     

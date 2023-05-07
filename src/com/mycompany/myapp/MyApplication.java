@@ -38,13 +38,7 @@ public class MyApplication {
         updateNetworkThreadCount(2);
 
         theme = UIManager.initFirstTheme("/theme");
-        try {
-            Tunitask=Database.openOrCreate("web");
-             Tunitask.execute("CREATE TABLE IF NOT EXISTS mytable (id INTEGER PRIMARY KEY, name TEXT)");
-            System.out.println(Tunitask);
-        } catch (IOException ex) {
-            System.out.println("problem base");
-        }
+   
         // Enable Toolbar on all Forms by default
         Toolbar.setGlobalToolbar(true);
 
@@ -68,7 +62,7 @@ public class MyApplication {
             return;
         }
      
-        new UsersList().show();
+        new Aceuil().show();
   
     }
 

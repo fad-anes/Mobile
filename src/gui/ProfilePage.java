@@ -65,7 +65,7 @@ public class ProfilePage extends Form {
         
         // Create container for profile picture
         Container profilePictureContainer = new Container(new FlowLayout(Component.CENTER));
-        //Image profilePicture = Image.createImage("/profile_picture.png");       
+              
         String url ="http://127.0.0.1/img/"+ usersess.getUser().getSrcimage();
         
       Image img = MyApplication.theme.getImage("logo.png");
