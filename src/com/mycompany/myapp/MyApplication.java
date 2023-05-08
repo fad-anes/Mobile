@@ -16,6 +16,7 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.db.Database;
 import com.mycompany.myapp.offre.Listetousoffre;
 import com.mycompany.myapp.offre.offrecommentaire;
+import com.tunitask.gui.front.reclamation.AfficherToutReclamation;
 import gui.Aceuil;
 import gui.ConnectionPage;
 
@@ -69,6 +70,7 @@ public class MyApplication {
        new Aceuil().show();
   //new offrecommentaire(theme).show();
     //new FormHome(current).show();
+    //new AfficherToutReclamation().show();
     }
 
     public void stop() {
@@ -77,6 +79,7 @@ public class MyApplication {
             ((Dialog)current).dispose();
             current = getCurrentForm();
         }
+        
     }
     
     public void destroy() {

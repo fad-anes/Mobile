@@ -13,6 +13,7 @@ import com.codename1.ui.Toolbar;
 import com.codename1.ui.layouts.BoxLayout;
 import static com.mycompany.myapp.MyApplication.theme;
 import com.mycompany.myapp.offre.offrecommentaire;
+import com.tunitask.gui.front.reclamation.AfficherToutReclamation;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ toolbar.addCommandToLeftSideMenu("TuniTask",null,(e) -> new Aceuil().show());
 
     toolbar.addCommandToLeftSideMenu("Offre",null,(e) -> new offrecommentaire(theme).show());
     toolbar.addCommandToLeftSideMenu("Demmande",null,(e) ->  new FormHome(this).show());
-        toolbar.addCommandToLeftSideMenu("Reclamation",null,(e) -> new Inscription().show());
+        toolbar.addCommandToLeftSideMenu("Reclamation",null,(e) -> new AfficherToutReclamation(this).show());
     Label title = new Label("TuniTask");
 toolbar.setTitleComponent(title);
  toolbar.addCommandToLeftSideMenu("Profile ",null,(e) -> new ProfilePage(this).show());
