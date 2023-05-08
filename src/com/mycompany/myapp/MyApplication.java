@@ -24,6 +24,8 @@ import gui.Inscription;
 import gui.ProfilePage;
 
 import gui.UsersList;
+import gui.front.event.AfficherToutEvent;
+import mycompanyquiz.gui.home;
 import tn.esprit.demande.gui.FormHome;
 
 /**
@@ -68,9 +70,11 @@ public class MyApplication {
      
        // new Listetousoffre(theme).show();
        new Aceuil().show();
+       // new home().show();
   //new offrecommentaire(theme).show();
     //new FormHome(current).show();
     //new AfficherToutReclamation().show();
+    //new AfficherToutEvent().show();
     }
 
     public void stop() {

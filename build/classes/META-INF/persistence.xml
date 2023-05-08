@@ -11,6 +11,11 @@
     <class>gui.Client</class>
     <class>gui.Freelancer</class>
     <class>gui.Admin</class>
+    <class>entites.Event</class>
+    <class>gui.front.event.AfficherToutEvent</class>
+    <class>gui.front.event.AjouterEvent</class>
+    <class>gui.front.event.ModifierEvent</class>
+    <class>services.EventService</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3000/web?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

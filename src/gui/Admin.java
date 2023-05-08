@@ -10,6 +10,8 @@ import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
 import com.tunitask.gui.front.reclamation.AfficherToutReclamation;
+import gui.front.event.AfficherToutEvent;
+import mycompanyquiz.gui.home;
 
 
 /**
@@ -28,8 +30,8 @@ toolbar.addCommandToLeftSideMenu("TuniTask",null,(e) -> new Aceuil().show());
     toolbar.addCommandToLeftSideMenu("Users",null,(e) -> new UsersList().show());
     toolbar.addCommandToLeftSideMenu("Ofre",null,(e) -> new ConnectionPage().show());
     toolbar.addCommandToLeftSideMenu("Proposition",null,(e) -> new Inscription().show());
-        toolbar.addCommandToLeftSideMenu("Quiz",null,(e) -> new Inscription().show());
-        toolbar.addCommandToLeftSideMenu("Events",null,(e) -> new Inscription().show());
+        toolbar.addCommandToLeftSideMenu("Quiz",null,(e) -> new home(this).show());
+        toolbar.addCommandToLeftSideMenu("Events",null,(e) -> new AfficherToutEvent(this).show());
         toolbar.addCommandToLeftSideMenu("Reclamation",null,(e) -> new AfficherToutReclamation(this).show());
         toolbar.addCommandToLeftSideMenu("Profile ",null,(e) -> new ProfilePage(this).show());
         toolbar.addCommandToLeftSideMenu("Log out ",null,(e) -> new Aceuil().show());
