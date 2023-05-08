@@ -18,6 +18,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import tn.esprit.demande.gui.FormHome;
 
 /**
  *
@@ -37,7 +38,7 @@ public  class Client extends Form {
 toolbar.addCommandToLeftSideMenu("TuniTask",null,(e) -> new Aceuil().show());
 
     toolbar.addCommandToLeftSideMenu("Offre",null,(e) -> new offrecommentaire(theme).show());
-    toolbar.addCommandToLeftSideMenu("Demmande",null,(e) -> new Inscription().show());
+    toolbar.addCommandToLeftSideMenu("Demmande",null,(e) ->  new FormHome(this).show());
         toolbar.addCommandToLeftSideMenu("Reclamation",null,(e) -> new Inscription().show());
     Label title = new Label("TuniTask");
 toolbar.setTitleComponent(title);
